@@ -1,14 +1,17 @@
-const http = require('http');
+// index.js
 
-const hostname = process.env.HOST || 'localhost';
-const port = process.env.PORT || 3000;
+const express = require('express');
+const app = express();
+const port = 3000;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, world!');
+// ... existing code
+
+// Add a new route for the health API
+app.get('/health', (req, res) => {
+  res.status(200).json({ message: 'Server is up and running' });
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/`);
 });
